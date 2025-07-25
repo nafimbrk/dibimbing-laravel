@@ -32,7 +32,7 @@
 <aside class="w-64 bg-gradient-to-b from-purple-600 to-pink-500 text-white shadow-lg">
     <div class="p-6 text-xl font-bold">📚 Dibimbing</div>
     <nav class="mt-4 flex flex-col gap-2 px-4">
-        <a href="{{ url('/') }}" class="px-4 py-2 rounded hover:bg-purple-700 transition">Dashboard</a>
+        <a href="{{ url('/dashboard') }}" class="px-4 py-2 rounded hover:bg-purple-700 transition">Dashboard</a>
         @if (Auth::user()->role === 'admin')
         <a href="{{ route('admin.dosen.index') }}" class="px-4 py-2 rounded hover:bg-purple-700 transition">Dosen</a>
         @else

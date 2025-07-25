@@ -29,12 +29,43 @@ class AuthController extends Controller
             'role' => 'admin'
         ]);
 
-        return redirect()->route('login')->with('success', 'Registration successful! Please login.');
+        return redirect()->route('login.admin')->with('success', 'Registration successful! Please login.');
+    }
+
+    public function showLoginA()
+    {
+        return view('auth.login');
+    }
+
+    public function loginA(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect('/dashboard'); // atau redirect sesuai aplikasi
+        }
+
+        return back()->withErrors([
+            'email' => 'Invalid credentials.',
+        ]);
+    }
+
+    public function logoutA(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login.admin');
     }
 
     public function showLogin()
     {
-        return view('auth.login');
+        return view('auth.login_dosen');
     }
 
     public function login(Request $request)
@@ -46,7 +77,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect('/'); // atau redirect sesuai aplikasi
+            return redirect('/dashboard'); // atau redirect sesuai aplikasi
         }
 
         return back()->withErrors([
@@ -60,28 +91,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
-    }
-
-    public function showLoginD()
-    {
-        return view('auth.login');
-    }
-
-    public function loginD(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect('/'); // atau redirect sesuai aplikasi
-        }
-
-        return back()->withErrors([
-            'email' => 'Invalid credentials.',
-        ]);
+        return redirect()->route('login');
     }
 }

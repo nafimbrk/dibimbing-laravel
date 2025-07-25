@@ -37,7 +37,7 @@
         </form>
 
         <p class="mt-4 text-sm text-center">
-            Sudah punya akun? <a href="{{ route('login') }}" class="text-purple-600">Login di sini</a>
+            Sudah punya akun? <a href="{{ route('login.admin') }}" class="text-purple-600">Login di sini</a>
         </p>
     </div>
 </x-layout_auth>

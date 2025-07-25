@@ -2,11 +2,20 @@
     <div class="flex items-center gap-4">
         <span class="text-sm text-gray-600">Halo, {{ Auth::user()->name ?? 'User' }}</span>
 
+        @if (Auth::user()->role === 'admin')
+            <form method="POST" action="{{ route('logout.admin') }}">
+            @csrf
+            <button type="submit" class="text-sm bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">
+                Logout
+            </button>
+        </form>
+        @else
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit" class="text-sm bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">
                 Logout
             </button>
         </form>
+        @endif
     </div>
 </header>

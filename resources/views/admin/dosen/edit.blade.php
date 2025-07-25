@@ -42,18 +42,30 @@
         </div>
 
         <div>
-            <label class="block font-medium text-gray-700">Fakultas</label>
-            <input type="text" name="fakultas" value="{{ old('fakultas', $dosen->fakultas ?? '') }}"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-pink-500 focus:border-purple-500">
-            @error('fakultas') <div class="text-red-600 text-sm">{{ $message }}</div> @enderror
-        </div>
+    <label class="block font-medium text-gray-700">Fakultas</label>
+    <select name="fakultas" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-pink-500 focus:border-purple-500" required>
+        <option value="">-- Pilih Fakultas --</option>
+        <option value="Teknik" {{ old('fakultas', $dosen->fakultas) == 'Teknik' ? 'selected' : '' }}>Teknik</option>
+        <option value="Ekonomi" {{ old('fakultas', $dosen->fakultas) == 'Ekonomi' ? 'selected' : '' }}>Ekonomi</option>
+        <option value="Kedokteran" {{ old('fakultas', $dosen->fakultas) == 'Kedokteran' ? 'selected' : '' }}>Kedokteran</option>
+        <!-- Tambahkan lainnya jika perlu -->
+    </select>
+    @error('fakultas') <div class="text-red-600 text-sm">{{ $message }}</div> @enderror
+</div>
 
-        <div>
-            <label class="block font-medium text-gray-700">Program Studi</label>
-            <input type="text" name="prodi" value="{{ old('prodi', $dosen->prodi) }}"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-pink-500 focus:border-purple-500">
-            @error('prodi') <div class="text-red-600 text-sm">{{ $message }}</div> @enderror
-        </div>
+<div>
+    <label class="block font-medium text-gray-700">Program Studi</label>
+    <select name="prodi" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-pink-500 focus:border-purple-500" required>
+        <option value="">-- Pilih Prodi --</option>
+        <option value="Teknik Informatika" {{ old('prodi', $dosen->prodi) == 'Teknik Informatika' ? 'selected' : '' }}>Teknik Informatika</option>
+        <option value="Manajemen" {{ old('prodi', $dosen->prodi) == 'Manajemen' ? 'selected' : '' }}>Manajemen</option>
+        <option value="Kedokteran Umum" {{ old('prodi', $dosen->prodi) == 'Kedokteran Umum' ? 'selected' : '' }}>Kedokteran Umum</option>
+        <!-- Tambahkan lainnya jika perlu -->
+    </select>
+    @error('prodi') <div class="text-red-600 text-sm">{{ $message }}</div> @enderror
+</div>
+
+
 
         <div>
     <label class="block font-medium text-gray-700">Foto (Opsional)</label>

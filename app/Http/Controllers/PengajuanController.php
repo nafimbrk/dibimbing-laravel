@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PengajuanBimbingan;
 use App\Models\DosenProfile;
+use Illuminate\Support\Facades\Storage;
 
 class PengajuanController extends Controller
 {
@@ -51,5 +52,20 @@ class PengajuanController extends Controller
 
         return redirect()->route('pengajuan.sukses');
     }
+
+    public function destroy($id)
+{
+    $pengajuan = PengajuanBimbingan::findOrFail($id);
+
+    // jika ada file, hapus dulu dari storage
+    if ($pengajuan->file_path) {
+        Storage::disk('public')->delete($pengajuan->file_path);
+    }
+
+    $pengajuan->delete();
+
+    return back()->with('success', 'Pengajuan berhasil dihapus.');
+}
+
 }
 

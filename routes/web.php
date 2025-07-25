@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
 // Route::get('/pengajuan', [PengajuanController::class, 'create'])->name('pengajuan.create');
 // Route::post('/pengajuan', [PengajuanController::class, 'store'])->name('pengajuan.store');
@@ -32,7 +32,7 @@ Route::prefix('admin/dosen')->name('admin.dosen.')->group(function () {
 
 Route::patch('/dosen/{id}/toggle-status', [DosenController::class, 'toggleStatus'])->name('dosen.toggleStatus');
 
-Route::get('/pembimbing', [PengajuanController::class, 'index'])->name('pengajuan.index');
+Route::get('/', [PengajuanController::class, 'index'])->name('pengajuan.index');
 Route::get('/pengajuan', [PengajuanController::class, 'create'])->name('pengajuan.create');
 Route::post('/pengajuan', [PengajuanController::class, 'store'])->name('pengajuan.store');
 
@@ -51,10 +51,15 @@ Route::patch('/pengajuan/{id}/tolak', [DosenDashboardController::class, 'tolak']
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+Route::get('/login/admin', [AuthController::class, 'showLoginA'])->name('login.admin');
+Route::post('/login/admin', [AuthController::class, 'loginA']);
 
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout/admin', [AuthController::class, 'logoutA'])->name('logout.admin');
 
-Route::get('/loginD', [AuthController::class, 'showLoginD'])->name('loginD');
-Route::post('/loginD', [AuthController::class, 'loginD']);
+Route::get('/login/dosen', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login/dosen', [AuthController::class, 'login']);
+
+Route::post('/logout/dosen', [AuthController::class, 'logout'])->name('logout');
+
+Route::delete('/pengajuan/{id}', [PengajuanController::class, 'destroy'])->name('pengajuan.destroy');
+

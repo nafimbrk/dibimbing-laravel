@@ -4,7 +4,14 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         @forelse ($pengajuans as $item)
-            <div class="bg-white shadow p-4 rounded-lg">
+            <div class="bg-white shadow p-4 rounded-lg relative">
+                @if($item->status === 'ditolak')
+    <form action="{{ route('pengajuan.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus pengajuan ini?')" class="absolute top-2 right-2">
+        @csrf
+        @method('DELETE')
+        <button class="text-gray-400 hover:text-red-600 text-2xl leading-none">&times;</button>
+    </form>
+@endif
                 <h2 class="font-semibold text-lg">{{ $item->nama_mahasiswa }} ({{ $item->nim }})</h2>
                 <p class="text-sm text-gray-600 mb-1"><strong>Judul:</strong> {{ $item->judul }}</p>
                 <p class="text-sm text-gray-600 mb-1"><strong>Fakultas/Prodi:</strong> {{ $item->fakultas }}/{{ $item->prodi }}</p>

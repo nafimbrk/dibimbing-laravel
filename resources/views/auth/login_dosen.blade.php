@@ -1,8 +1,9 @@
 <x-layout_auth title="Login">
     <div class="max-w-md mx-auto mt-20 bg-white p-6 rounded shadow">
         <div class="mb-6 text-center">
-            <h1 class="text-3xl font-bold text-purple-700">Selamat Datang!</h1>
-            <p class="text-sm text-gray-600">Silakan masuk untuk mengelola pencatatan keuangan Anda.</p>
+            <h1 class="text-3xl font-bold text-purple-700 mb-2">Selamat Datang Dosen!</h1>
+<p class="text-sm text-gray-600">Masuk untuk melihat dan menyetujui pengajuan mahasiswa yang memilih Anda sebagai pembimbing.</p>
+
         </div>
 
         <form method="POST" action="{{ route('login') }}" class="space-y-4">
@@ -22,9 +23,5 @@
 
             <button type="submit" class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700">Login</button>
         </form>
-
-        <p class="mt-4 text-sm text-center">
-            Belum punya akun? <a href="{{ route('register') }}" class="text-purple-600 hover:underline">Daftar di sini</a>
-        </p>
     </div>
 </x-layout_auth>

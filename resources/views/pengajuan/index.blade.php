@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout_index>
     <div class="max-w-7xl mx-auto px-4 py-6">
     <h1 class="text-2xl font-semibold mb-6">Pilih Dosen Pembimbing</h1>
 
@@ -49,4 +49,4 @@
 
 </div>
 
-</x-layout>
+</x-layout_index>
